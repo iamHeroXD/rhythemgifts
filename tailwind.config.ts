@@ -8,6 +8,19 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      colors: {
+        brand: {
+          charcoal: "#121212",
+          ivory: "#FAF7F2",
+          rose: "#B54D6B",
+          gold: "#C5A880",
+          terracotta: "#D35400",
+        }
+      },
+      fontFamily: {
+        serif: ["var(--font-cormorant)", "serif"],
+        sans: ["var(--font-jakarta)", "sans-serif"],
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
