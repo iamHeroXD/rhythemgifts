@@ -13,14 +13,14 @@ export default function ProductCard({ product }: ProductCardProps) {
   const whatsappUrl = getWhatsAppLink(whatsappMessage);
 
   return (
-    <div className="group relative flex flex-col bg-white overflow-hidden border border-brand-gold/10 hover:border-brand-gold/30 hover:shadow-md transition-all duration-300">
+    <div className="group relative flex flex-col bg-white overflow-hidden border border-brand-gold/10 card-hover-effect rounded-lg">
       {/* Image Container */}
       <Link href={`/gifts/${product.slug}`} className="relative block aspect-[4/5] bg-brand-ivory overflow-hidden">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={product.images[0]}
           alt={product.name}
-          className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+          className="h-full w-full object-cover image-zoom-effect"
           loading="lazy"
         />
         {product.customizable && (

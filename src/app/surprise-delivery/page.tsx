@@ -134,6 +134,75 @@ export default function SurpriseDeliveryPage() {
             </div>
           </div>
 
+          {/* Sensory Details of an Unboxing */}
+          <div className="border-t border-brand-gold/15 py-16 space-y-12">
+            <div className="text-center max-w-2xl mx-auto space-y-3">
+              <span className="font-sans text-[10px] font-bold tracking-widest text-brand-gold uppercase">
+                The Sensory Experience
+              </span>
+              <h2 className="font-serif text-3xl sm:text-4xl font-medium text-brand-charcoal">
+                Sensory Details of an Unboxing
+              </h2>
+              <p className="font-sans text-xs sm:text-sm text-brand-charcoal/65 leading-relaxed">
+                We believe that premium gifting should delight every sense. Here is how we craft the unboxing process.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
+              {/* Sensory 1: Touch */}
+              <div className="bg-white border border-brand-gold/10 p-6 rounded-lg flex gap-4">
+                <div className="text-brand-gold flex-shrink-0">
+                  <span className="font-serif text-2xl font-bold italic">T</span>
+                </div>
+                <div className="space-y-1">
+                  <h3 className="font-serif text-base font-semibold text-brand-charcoal">The Textures & Finish</h3>
+                  <p className="font-sans text-xs text-brand-charcoal/65 leading-relaxed">
+                    Textured rigid-board gift boxes wrapped with double-faced satin ribbons and authentic, hand-stamped hot wax seals. The tactile sensation instantly sets a tone of luxury.
+                  </p>
+                </div>
+              </div>
+
+              {/* Sensory 2: Aroma */}
+              <div className="bg-white border border-brand-gold/10 p-6 rounded-lg flex gap-4">
+                <div className="text-brand-rose flex-shrink-0">
+                  <span className="font-serif text-2xl font-bold italic">A</span>
+                </div>
+                <div className="space-y-1">
+                  <h3 className="font-serif text-base font-semibold text-brand-charcoal">The Scent & Aroma</h3>
+                  <p className="font-sans text-xs text-brand-charcoal/65 leading-relaxed">
+                    Opening the box releases the light, soothing fragrance of hand-poured vanilla, lavender, or rose soy wax candles, infusing the packaging with sensory nostalgia.
+                  </p>
+                </div>
+              </div>
+
+              {/* Sensory 3: Vision */}
+              <div className="bg-white border border-brand-gold/10 p-6 rounded-lg flex gap-4">
+                <div className="text-brand-gold flex-shrink-0">
+                  <span className="font-serif text-2xl font-bold italic">V</span>
+                </div>
+                <div className="space-y-1">
+                  <h3 className="font-serif text-base font-semibold text-brand-charcoal">The Visual Curation</h3>
+                  <p className="font-sans text-xs text-brand-charcoal/65 leading-relaxed">
+                    Meticulously arranged local red roses, customized name spell-out chocolates, and glowing LED photo plaque mirrors aligned in a perfect balanced grid.
+                  </p>
+                </div>
+              </div>
+
+              {/* Sensory 4: Word */}
+              <div className="bg-white border border-brand-gold/10 p-6 rounded-lg flex gap-4">
+                <div className="text-brand-rose flex-shrink-0">
+                  <span className="font-serif text-2xl font-bold italic">W</span>
+                </div>
+                <div className="space-y-1">
+                  <h3 className="font-serif text-base font-semibold text-brand-charcoal">The Calligraphy Scroll</h3>
+                  <p className="font-sans text-xs text-brand-charcoal/65 leading-relaxed">
+                    Your personal message, printed on premium burnt-edge cardstock or scroll paper, rolled and sealed with gold wax, ensuring your words are read first.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* The Timeline Steps */}
           <div className="border-t border-brand-gold/15 py-16">
             <div className="text-center max-w-2xl mx-auto mb-12 space-y-3">

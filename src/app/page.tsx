@@ -40,7 +40,7 @@ export default function HomePage() {
 
             <h1 className="font-serif text-5xl sm:text-6xl lg:text-7xl font-light tracking-tight leading-tight">
               Make every moment<br />
-              <span className="italic font-normal text-brand-gold font-serif">worth remembering.</span>
+              <span className="italic font-normal text-gold-gradient font-serif">worth remembering.</span>
             </h1>
 
             <p className="font-sans text-sm sm:text-base text-brand-ivory/80 max-w-2xl mx-auto leading-relaxed">
