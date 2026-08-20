@@ -8,7 +8,19 @@ import ProductCard from "../components/ProductCard";
 import GiftFinder from "../components/GiftFinder";
 import { PRODUCTS, COLLECTIONS, OCCASIONS, BUSINESS_INFO } from "../data/giftingData";
 import { getWhatsAppLink } from "../utils/whatsapp";
-import { Sparkles, MessageCircle, Heart, Star, Gift, Compass, ChevronRight } from "lucide-react";
+import { 
+  Sparkles, 
+  MessageCircle, 
+  Heart, 
+  Star, 
+  Gift, 
+  Compass, 
+  ChevronRight,
+  Award,
+  Leaf,
+  Music,
+  ShieldCheck
+} from "lucide-react";
 
 export default function HomePage() {
   const featuredProducts = PRODUCTS.slice(0, 3);
@@ -17,7 +29,7 @@ export default function HomePage() {
   return (
     <>
       <Header />
-      <main className="flex-1">
+      <main className="flex-1 bg-brand-ivory">
         {/* 1. Cinematic Hero Section */}
         <section className="relative min-h-[90vh] flex items-center justify-center bg-brand-charcoal text-brand-ivory overflow-hidden pt-16">
           {/* Hero Editorial Image Background */}
@@ -29,7 +41,7 @@ export default function HomePage() {
               className="h-full w-full object-cover opacity-35"
               loading="eager"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-brand-charcoal via-brand-charcoal/80 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-b from-brand-charcoal/40 via-brand-charcoal/85 to-brand-charcoal" />
           </div>
 
           <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 text-center space-y-6 sm:space-y-8 py-12">
@@ -70,6 +82,12 @@ export default function HomePage() {
               <span>Surprise Delivery</span>
             </div>
           </div>
+
+          {/* Bouncing Scroll-down luxury indicator */}
+          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-1 animate-bounce text-brand-gold/50 pointer-events-none">
+            <span className="font-sans text-[8px] font-bold tracking-widest uppercase">Scroll to Discover</span>
+            <ChevronRight className="h-3.5 w-3.5 rotate-90" />
+          </div>
         </section>
 
         {/* 2. Emotional Intro Section */}
@@ -84,6 +102,77 @@ export default function HomePage() {
             <p className="font-sans text-xs sm:text-sm text-brand-charcoal/65 leading-relaxed max-w-xl mx-auto">
               At Rhythm, we believe a customized gift is an expression of appreciation, an preservation of a memory, and a bridge to the people who matter. We arrange every details—from personalized wax seals and photo mugs to doorstep acoustics—around your unique emotion.
             </p>
+          </div>
+        </section>
+
+        {/* NEW: Why Rhythm — Gifting Standards Section */}
+        <section className="bg-white py-16 sm:py-24 border-b border-brand-gold/10">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-16">
+            <div className="text-center max-w-2xl mx-auto space-y-2">
+              <span className="font-sans text-[10px] font-bold tracking-widest text-brand-gold uppercase">
+                Gifting Standards
+              </span>
+              <h2 className="font-serif text-3xl sm:text-4xl font-medium text-brand-charcoal">
+                Why Gifting is an Art at Rhythm
+              </h2>
+              <p className="font-sans text-xs sm:text-sm text-brand-charcoal/65 leading-relaxed">
+                Ordinary packages are sent; premium moments are crafted. We hold our Trivandrum studio to four non-negotiable luxury gifting pillars.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+              {/* Pillar 1 */}
+              <div className="space-y-4 text-center sm:text-left bg-brand-ivory/30 p-6 rounded border border-brand-gold/5">
+                <div className="mx-auto sm:mx-0 flex h-12 w-12 items-center justify-center rounded-full bg-brand-rose/5 border border-brand-rose/25 text-brand-rose">
+                  <Award className="h-5 w-5" />
+                </div>
+                <div className="space-y-2">
+                  <h3 className="font-serif text-lg font-medium text-brand-charcoal">Hand-Tied Details</h3>
+                  <p className="font-sans text-xs text-brand-charcoal/60 leading-relaxed">
+                    No shortcuts. Every ribbon is double-faced premium satin, hand-measured, and cut with tailored precision angles for a majestic unboxing.
+                  </p>
+                </div>
+              </div>
+
+              {/* Pillar 2 */}
+              <div className="space-y-4 text-center sm:text-left bg-brand-ivory/30 p-6 rounded border border-brand-gold/5">
+                <div className="mx-auto sm:mx-0 flex h-12 w-12 items-center justify-center rounded-full bg-brand-gold/5 border border-brand-gold/25 text-brand-gold">
+                  <Leaf className="h-5 w-5" />
+                </div>
+                <div className="space-y-2">
+                  <h3 className="font-serif text-lg font-medium text-brand-charcoal">Fresh Sourcing</h3>
+                  <p className="font-sans text-xs text-brand-charcoal/60 leading-relaxed">
+                    We source our floral elements fresh from local Trivandrum flower farms on the morning of delivery, ensuring zero wilt or artificial fillers.
+                  </p>
+                </div>
+              </div>
+
+              {/* Pillar 3 */}
+              <div className="space-y-4 text-center sm:text-left bg-brand-ivory/30 p-6 rounded border border-brand-gold/5">
+                <div className="mx-auto sm:mx-0 flex h-12 w-12 items-center justify-center rounded-full bg-brand-rose/5 border border-brand-rose/25 text-brand-rose">
+                  <Music className="h-5 w-5" />
+                </div>
+                <div className="space-y-2">
+                  <h3 className="font-serif text-lg font-medium text-brand-charcoal">Surprise Serenades</h3>
+                  <p className="font-sans text-xs text-brand-charcoal/60 leading-relaxed">
+                    Elevate the moment. We coordinate with local acoustic guitarists and violinists to perform special songs on doorstep deliveries.
+                  </p>
+                </div>
+              </div>
+
+              {/* Pillar 4 */}
+              <div className="space-y-4 text-center sm:text-left bg-brand-ivory/30 p-6 rounded border border-brand-gold/5">
+                <div className="mx-auto sm:mx-0 flex h-12 w-12 items-center justify-center rounded-full bg-brand-gold/5 border border-brand-gold/25 text-brand-gold">
+                  <ShieldCheck className="h-5 w-5" />
+                </div>
+                <div className="space-y-2">
+                  <h3 className="font-serif text-lg font-medium text-brand-charcoal">Eco-Luxury Pledge</h3>
+                  <p className="font-sans text-xs text-brand-charcoal/60 leading-relaxed">
+                    Zero single-use plastics. We package using high-density recycled board, natural wood shavings, glass bottles, and organic cotton liners.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -107,13 +196,13 @@ export default function HomePage() {
                 <Link
                   key={occ.slug}
                   href={`/occasions#${occ.slug}`}
-                  className="group relative flex flex-col justify-end aspect-[4/3] rounded-lg overflow-hidden border border-brand-gold/15 bg-brand-charcoal"
+                  className="group relative flex flex-col justify-end aspect-[4/3] rounded-lg overflow-hidden border border-brand-gold/15 bg-brand-charcoal card-hover-effect"
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={occ.image}
                     alt={occ.name}
-                    className="absolute inset-0 h-full w-full object-cover opacity-60 transition-transform duration-700 ease-out group-hover:scale-105"
+                    className="absolute inset-0 h-full w-full object-cover opacity-60 image-zoom-effect"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-brand-charcoal via-brand-charcoal/40 to-transparent" />
                   
@@ -177,7 +266,7 @@ export default function HomePage() {
               </span>
               <h2 className="font-serif text-3xl sm:text-4xl font-medium text-brand-charcoal leading-tight">
                 Made for them.<br />
-                <span className="italic text-brand-gold font-serif">Not just picked for them.</span>
+                <span className="italic text-gold-gradient font-serif">Not just picked for them.</span>
               </h2>
               <p className="font-sans text-xs sm:text-sm text-brand-charcoal/70 leading-relaxed">
                 Every hamper is constructed according to your design preference. Select custom initials engraving, name spell-out chocolates, wax scrolls, flower color customization, photo prints, or live music coordination. We build a personalized story, not just a gift.
@@ -192,12 +281,12 @@ export default function HomePage() {
                 </Link>
               </div>
             </div>
-            <div className="relative aspect-[4/3] rounded-lg overflow-hidden border border-brand-gold/15 bg-brand-charcoal shadow-sm">
+            <div className="relative aspect-[4/3] rounded-lg overflow-hidden border border-brand-gold/15 bg-brand-charcoal shadow-sm card-hover-effect">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?q=80&w=800&auto=format&fit=crop"
                 alt="A premium gift card scroll tied with golden string and wax seal"
-                className="h-full w-full object-cover"
+                className="h-full w-full object-cover image-zoom-effect"
               />
             </div>
           </div>
@@ -222,12 +311,12 @@ export default function HomePage() {
         {/* 7. Surprise Delivery Section */}
         <section className="bg-white py-16 sm:py-24 border-b border-brand-gold/10">
           <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-            <div className="md:col-span-5 relative aspect-[4/5] rounded-lg overflow-hidden border border-brand-gold/15 bg-brand-charcoal shadow-sm order-last md:order-first">
+            <div className="md:col-span-5 relative aspect-[4/5] rounded-lg overflow-hidden border border-brand-gold/15 bg-brand-charcoal shadow-sm order-last md:order-first card-hover-effect">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?q=80&w=800&auto=format&fit=crop"
                 alt="Doorstep flower and cake reveal surprise experience"
-                className="h-full w-full object-cover"
+                className="h-full w-full object-cover image-zoom-effect"
               />
             </div>
             <div className="md:col-span-7 space-y-6 md:pl-6">
@@ -270,13 +359,13 @@ export default function HomePage() {
                 <Link
                   key={c.slug}
                   href={`/collections/${c.slug}`}
-                  className="group relative flex flex-col justify-end aspect-[3/4] rounded-lg overflow-hidden border border-brand-gold/15 bg-brand-charcoal"
+                  className="group relative flex flex-col justify-end aspect-[3/4] rounded-lg overflow-hidden border border-brand-gold/15 bg-brand-charcoal card-hover-effect"
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={c.heroImage}
                     alt={c.name}
-                    className="absolute inset-0 h-full w-full object-cover opacity-50 transition-transform duration-700 ease-out group-hover:scale-105"
+                    className="absolute inset-0 h-full w-full object-cover opacity-50 image-zoom-effect"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-brand-charcoal via-brand-charcoal/50 to-transparent" />
                   
@@ -308,38 +397,38 @@ export default function HomePage() {
               </p>
             </div>
 
-            {/* Grid of editorial social style assets */}
+            {/* Grid of editorial social style assets with zoom scale-ups */}
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-              <div className="aspect-square relative overflow-hidden rounded border border-brand-gold/10 bg-brand-charcoal">
+              <div className="aspect-square relative overflow-hidden rounded border border-brand-gold/10 bg-brand-charcoal group">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?q=80&w=400&auto=format&fit=crop"
                   alt="Gold ribbon wrapping close up"
-                  className="h-full w-full object-cover"
+                  className="h-full w-full object-cover image-zoom-effect"
                 />
               </div>
-              <div className="aspect-square relative overflow-hidden rounded border border-brand-gold/10 bg-brand-charcoal">
+              <div className="aspect-square relative overflow-hidden rounded border border-brand-gold/10 bg-brand-charcoal group">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="https://images.unsplash.com/photo-1513201099705-a9746e1e201f?q=80&w=400&auto=format&fit=crop"
                   alt="Custom gift hamper tray selection"
-                  className="h-full w-full object-cover"
+                  className="h-full w-full object-cover image-zoom-effect"
                 />
               </div>
-              <div className="aspect-square relative overflow-hidden rounded border border-brand-gold/10 bg-brand-charcoal">
+              <div className="aspect-square relative overflow-hidden rounded border border-brand-gold/10 bg-brand-charcoal group">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="https://images.unsplash.com/photo-1575550959106-5a7defe28b56?q=80&w=400&auto=format&fit=crop"
                   alt="Rustic scroll sealing with red wax details"
-                  className="h-full w-full object-cover"
+                  className="h-full w-full object-cover image-zoom-effect"
                 />
               </div>
-              <div className="aspect-square relative overflow-hidden rounded border border-brand-gold/10 bg-brand-charcoal">
+              <div className="aspect-square relative overflow-hidden rounded border border-brand-gold/10 bg-brand-charcoal group">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="https://images.unsplash.com/photo-1512909006721-3d6018887383?q=80&w=400&auto=format&fit=crop"
                   alt="Handmade card layout and packaging detailing"
-                  className="h-full w-full object-cover"
+                  className="h-full w-full object-cover image-zoom-effect"
                 />
               </div>
             </div>
@@ -368,7 +457,7 @@ export default function HomePage() {
             </span>
             <h2 className="font-serif text-4xl sm:text-5xl font-light tracking-tight leading-tight">
               Have someone special in mind?<br />
-              <span className="italic font-normal text-brand-gold">Let&apos;s make their next moment unforgettable.</span>
+              <span className="italic font-normal text-gold-gradient font-serif">Let&apos;s make their next moment unforgettable.</span>
             </h2>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-4 max-w-md mx-auto">
               <Link
