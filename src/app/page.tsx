@@ -108,11 +108,11 @@ export default function HomePage() {
             <img
               src="https://images.unsplash.com/photo-1607344645866-009c320c5ab8?q=80&w=1600&auto=format&fit=crop"
               alt="Luxury dark gift hamper box with gold ribbon and fresh flowers"
-              className="h-full w-full object-cover opacity-35 scale-105 animate-spin-slow"
+              className="h-full w-full object-cover opacity-20 sm:opacity-25 scale-105 animate-spin-slow"
               style={{ animationDuration: '90s' }}
               loading="eager"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-brand-charcoal/50 via-brand-charcoal/90 to-brand-charcoal" />
+            <div className="absolute inset-0 bg-gradient-to-b from-brand-charcoal/60 via-brand-charcoal/95 to-brand-charcoal" />
           </div>
 
           <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 text-center space-y-6 sm:space-y-8 py-16 animate-fade-in-up">

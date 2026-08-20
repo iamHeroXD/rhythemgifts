@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Search, Menu, X, Phone, MessageCircle } from "lucide-react";
+import { Search, Menu, X, MessageCircle } from "lucide-react";
 import { BUSINESS_INFO } from "../data/giftingData";
 import { getWhatsAppLink } from "../utils/whatsapp";
 import SearchModal from "./SearchModal";
@@ -14,7 +14,7 @@ export default function Header() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const pathname = usePathname();
 
-  // Scroll listener to toggle background blur
+  // Scroll listener to toggle background style
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 20) {
@@ -43,23 +43,45 @@ export default function Header() {
   const whatsappMessage = "Hi Rhythm Gifts & Hampers! I'd like to make a custom gift enquiry.";
   const mainWhatsappUrl = getWhatsAppLink(whatsappMessage);
 
+  // Helper to detect if page starts with a dark hero block
+  const isDarkHeroPage = (path: string) => {
+    return path === "/" || path === "/surprise-delivery";
+  };
+
+  // Header is in dark text mode when scrolled, on light pages, or when mobile menu is open
+  const isDarkTheme = !isScrolled && isDarkHeroPage(pathname) && !isMobileMenuOpen;
+
   return (
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-          isScrolled
-            ? "bg-brand-ivory/90 backdrop-blur-md border-b border-brand-gold/15 py-3 shadow-sm"
-            : "bg-transparent py-5"
+          isMobileMenuOpen
+            ? "bg-brand-ivory py-4 border-b border-brand-gold/10"
+            : isScrolled
+            ? "bg-brand-ivory/95 backdrop-blur-md border-b border-brand-gold/15 py-3 shadow-sm"
+            : isDarkHeroPage(pathname)
+            ? "bg-transparent py-5"
+            : "bg-brand-ivory/80 backdrop-blur-sm py-4 border-b border-brand-gold/10"
         }`}
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             {/* Left: Brand Logo / Wordmark */}
             <Link href="/" className="group flex flex-col focus:outline-none">
-              <span className="font-serif text-xl sm:text-2xl font-bold tracking-tight text-brand-charcoal group-hover:text-brand-rose transition-colors duration-300">
+              <span
+                className={`font-serif text-xl sm:text-2xl font-bold tracking-tight transition-colors duration-300 ${
+                  isDarkTheme
+                    ? "text-brand-ivory group-hover:text-brand-gold"
+                    : "text-brand-charcoal group-hover:text-brand-rose"
+                }`}
+              >
                 Rhythm
               </span>
-              <span className="font-sans text-[8px] sm:text-[9px] tracking-[0.25em] font-semibold text-brand-gold uppercase -mt-1">
+              <span
+                className={`font-sans text-[8px] sm:text-[9px] tracking-[0.25em] font-semibold uppercase -mt-1 transition-colors duration-300 ${
+                  isDarkTheme ? "text-brand-gold/80" : "text-brand-gold"
+                }`}
+              >
                 Gifts & Hampers
               </span>
             </Link>
@@ -72,8 +94,12 @@ export default function Header() {
                   <Link
                     key={link.name}
                     href={link.href}
-                    className={`font-sans text-xs font-semibold tracking-wider uppercase transition-colors duration-300 hover:text-brand-rose ${
-                      isActive ? "text-brand-rose" : "text-brand-charcoal/80"
+                    className={`font-sans text-xs font-semibold tracking-wider uppercase transition-colors duration-300 ${
+                      isActive
+                        ? "text-brand-rose"
+                        : isDarkTheme
+                        ? "text-brand-ivory/80 hover:text-brand-gold"
+                        : "text-brand-charcoal/80 hover:text-brand-rose"
                     }`}
                   >
                     {link.name}
@@ -87,7 +113,11 @@ export default function Header() {
               <button
                 onClick={() => setIsSearchOpen(true)}
                 aria-label="Open Search"
-                className="rounded-full p-2 text-brand-charcoal/85 hover:bg-brand-charcoal/5 hover:text-brand-rose transition-all focus:outline-none"
+                className={`rounded-full p-2 transition-all focus:outline-none ${
+                  isDarkTheme
+                    ? "text-brand-ivory/90 hover:bg-white/10 hover:text-brand-gold"
+                    : "text-brand-charcoal/85 hover:bg-brand-charcoal/5 hover:text-brand-rose"
+                }`}
               >
                 <Search className="h-4.5 w-4.5" />
               </button>
@@ -96,7 +126,11 @@ export default function Header() {
                 href={mainWhatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hidden sm:flex items-center gap-1.5 rounded-full border border-brand-gold/30 bg-white px-4 py-2 font-sans text-xs font-semibold tracking-wider uppercase text-brand-charcoal hover:border-brand-rose hover:bg-brand-rose/5 transition-all duration-300"
+                className={`hidden sm:flex items-center gap-1.5 rounded-full border px-4 py-2 font-sans text-xs font-semibold tracking-wider uppercase transition-all duration-300 ${
+                  isDarkTheme
+                    ? "border-brand-gold/50 bg-brand-charcoal/40 text-brand-ivory hover:border-white hover:bg-white hover:text-brand-charcoal"
+                    : "border-brand-gold/30 bg-white text-brand-charcoal hover:border-brand-rose hover:bg-brand-rose/5"
+                }`}
               >
                 <MessageCircle className="h-3.5 w-3.5 text-brand-rose" />
                 <span>WhatsApp</span>
@@ -106,7 +140,11 @@ export default function Header() {
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
-                className="flex md:hidden rounded-full p-2 text-brand-charcoal/85 hover:bg-brand-charcoal/5 transition-all focus:outline-none"
+                className={`flex md:hidden rounded-full p-2 transition-all focus:outline-none ${
+                  isDarkTheme
+                    ? "text-brand-ivory/90 hover:bg-white/10"
+                    : "text-brand-charcoal/85 hover:bg-brand-charcoal/5"
+                }`}
               >
                 {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
               </button>
@@ -116,7 +154,7 @@ export default function Header() {
 
         {/* Mobile Full-Screen Menu Overlay */}
         <div
-          className={`fixed inset-0 top-[57px] z-30 flex flex-col bg-brand-ivory px-6 py-8 transition-transform duration-300 md:hidden border-t border-brand-gold/10 ${
+          className={`fixed inset-0 top-0 z-30 flex flex-col bg-brand-ivory px-6 pt-24 pb-8 transition-transform duration-300 md:hidden ${
             isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
           }`}
         >
