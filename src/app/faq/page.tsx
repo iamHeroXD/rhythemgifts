@@ -30,7 +30,7 @@ export default function FAQPage() {
             <span className="font-sans text-[10px] font-bold tracking-widest text-brand-gold uppercase">
               Frequently Asked Questions
             </span>
-            <h1 className="font-serif text-4xl sm:text-5xl font-medium tracking-tight text-brand-charcoal">
+            <h1 className="font-serif text-4xl sm:text-5xl font-light tracking-tight text-brand-charcoal">
               Answers, made simple.
             </h1>
             <p className="font-sans text-xs sm:text-sm text-brand-charcoal/60 leading-relaxed">
@@ -42,23 +42,33 @@ export default function FAQPage() {
           <div className="space-y-3">
             {FAQS.map((faq, index) => {
               const isOpen = activeIndex === index;
+              const regionId = `faq-answer-${index}`;
+              const triggerId = `faq-trigger-${index}`;
+
               return (
                 <div
                   key={index}
-                  className="bg-white border border-brand-gold/15 rounded-lg overflow-hidden transition-all"
+                  className="bg-white border border-brand-gold/15 rounded overflow-hidden transition-all duration-200"
                 >
                   <button
+                    id={triggerId}
+                    type="button"
                     onClick={() => toggleAccordion(index)}
-                    className="w-full flex items-center justify-between p-5 text-left font-serif text-base sm:text-lg font-medium text-brand-charcoal hover:text-brand-rose transition-colors focus:outline-none"
+                    aria-expanded={isOpen}
+                    aria-controls={regionId}
+                    className="w-full flex items-center justify-between p-5 text-left font-serif text-base sm:text-lg font-light text-brand-charcoal hover:text-brand-rose transition-colors focus:outline-none focus-visible:ring-1 focus-visible:ring-brand-rose"
                   >
                     <span>{faq.question}</span>
                     <ChevronDown
-                      className={`h-5 w-5 text-brand-gold transition-transform duration-300 ${
+                      className={`h-4.5 w-4.5 text-brand-gold transition-transform duration-300 ${
                         isOpen ? "rotate-180" : ""
                       }`}
                     />
                   </button>
                   <div
+                    id={regionId}
+                    role="region"
+                    aria-labelledby={triggerId}
                     className={`transition-all duration-300 overflow-hidden ${
                       isOpen ? "max-h-[300px] border-t border-brand-gold/10" : "max-h-0"
                     }`}
@@ -73,11 +83,11 @@ export default function FAQPage() {
           </div>
 
           {/* Callout */}
-          <div className="mt-12 text-center bg-white border border-brand-gold/15 rounded-lg p-6 sm:p-8 space-y-4">
-            <div className="inline-flex rounded-full bg-brand-rose/5 p-3 text-brand-rose">
-              <HelpCircle className="h-6 w-6" />
+          <div className="mt-12 text-center bg-white border border-brand-gold/10 rounded p-6 sm:p-8 space-y-4">
+            <div className="inline-flex rounded bg-brand-rose/5 p-3 text-brand-rose">
+              <HelpCircle className="h-5 w-5" />
             </div>
-            <h3 className="font-serif text-xl font-medium text-brand-charcoal">
+            <h3 className="font-serif text-xl font-light text-brand-charcoal">
               Have another question?
             </h3>
             <p className="font-sans text-xs text-brand-charcoal/60 max-w-md mx-auto leading-relaxed">
@@ -88,7 +98,7 @@ export default function FAQPage() {
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full bg-brand-charcoal px-6 py-3 font-sans text-xs font-bold tracking-widest uppercase text-white hover:bg-brand-rose transition-all duration-300 shadow-sm"
+                className="inline-flex items-center gap-2 rounded bg-brand-charcoal px-6 py-3 font-sans text-xs font-bold tracking-widest uppercase text-white hover:bg-brand-rose transition-colors duration-250 shadow-sm"
               >
                 <span>Ask on WhatsApp</span>
                 <MessageCircle className="h-4 w-4 text-brand-gold" />

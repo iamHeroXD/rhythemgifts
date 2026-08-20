@@ -6,7 +6,7 @@ import Breadcrumbs from "../../../components/Breadcrumbs";
 import ProductGallery from "../../../components/ProductGallery";
 import ProductConfigurator from "../../../components/ProductConfigurator";
 import { PRODUCTS, getProductBySlug, getCollectionBySlug } from "../../../data/giftingData";
-import { Sparkles, Check, HelpCircle } from "lucide-react";
+import { Check, HelpCircle } from "lucide-react";
 import Link from "next/link";
 
 interface ProductPageProps {
@@ -52,7 +52,7 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
             ]}
           />
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 mt-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 mt-8">
             {/* Left Column: Image Gallery */}
             <div className="lg:col-span-6">
               <ProductGallery images={product.images} name={product.name} />
@@ -61,16 +61,16 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
             {/* Right Column: Information Details */}
             <div className="lg:col-span-6 space-y-6 lg:py-2">
               <div className="space-y-2">
-                <span className="font-sans text-[10px] font-bold tracking-widest text-brand-gold uppercase">
+                <span className="font-sans text-[9px] font-bold tracking-widest text-brand-gold uppercase">
                   {collection ? collection.name : "Custom Gifts"}
                 </span>
-                <h1 className="font-serif text-3xl sm:text-4xl font-medium tracking-tight text-brand-charcoal">
+                <h1 className="font-serif text-3xl sm:text-4xl font-light tracking-tight text-brand-charcoal">
                   {product.name}
                 </h1>
               </div>
 
               {/* Descriptions */}
-              <div className="space-y-4 font-sans text-sm text-brand-charcoal/70 leading-relaxed">
+              <div className="space-y-4 font-sans text-xs sm:text-sm text-brand-charcoal/70 leading-relaxed">
                 <p className="font-semibold text-brand-charcoal">{product.description}</p>
                 <p>{product.longDescription}</p>
               </div>
@@ -80,10 +80,10 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
                 <h3 className="font-sans text-[10px] font-bold tracking-widest text-brand-gold uppercase">
                   Hamper Inclusions
                 </h3>
-                <ul className="space-y-2">
+                <ul className="space-y-2.5">
                   {product.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-start gap-2 text-xs font-sans text-brand-charcoal/75 leading-tight">
-                      <Check className="h-4 w-4 text-brand-gold flex-shrink-0 mt-0.5" />
+                    <li key={idx} className="flex items-start gap-2.5 text-xs font-sans text-brand-charcoal/75 leading-tight">
+                      <Check className="h-4 w-4 text-brand-rose flex-shrink-0 mt-0.5" />
                       <span>{feature}</span>
                     </li>
                   ))}
@@ -99,12 +99,12 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
               />
 
               {/* FAQ Link */}
-              <div className="text-center pt-2 border-t border-brand-gold/10">
+              <div className="text-center pt-4 border-t border-brand-gold/10">
                 <Link
                   href="/faq"
-                  className="inline-flex items-center gap-1 font-sans text-[10px] font-bold tracking-wider uppercase text-brand-gold hover:text-brand-rose transition-colors"
+                  className="inline-flex items-center gap-1.5 font-sans text-[10px] font-bold tracking-wider uppercase text-brand-gold hover:text-brand-rose transition-colors"
                 >
-                  <HelpCircle className="h-3 w-3" />
+                  <HelpCircle className="h-3.5 w-3.5" />
                   <span>Read Ordering FAQs</span>
                 </Link>
               </div>

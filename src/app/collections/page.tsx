@@ -4,7 +4,7 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import { COLLECTIONS } from "../../data/giftingData";
-import { Compass, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 export const metadata = {
   title: "Gift Collections | Rhythm Gifts & Hampers",
@@ -20,16 +20,13 @@ export default function CollectionsPage() {
           <Breadcrumbs items={[{ name: "Gift Collections" }]} />
 
           {/* Heading */}
-          <div className="text-center max-w-2xl mx-auto mt-8 mb-16 space-y-3">
+          <div className="text-center max-w-2xl mx-auto mt-8 mb-16 space-y-2">
             <span className="font-sans text-[10px] font-bold tracking-widest text-brand-gold uppercase">
               Curated Series
             </span>
-            <h1 className="font-serif text-4xl sm:text-5xl font-medium tracking-tight text-brand-charcoal">
+            <h1 className="font-serif text-4xl sm:text-5xl font-light tracking-tight text-brand-charcoal text-balance">
               Explore our collections.
             </h1>
-            <p className="font-sans text-xs sm:text-sm text-brand-charcoal/60 leading-relaxed">
-              Carefully grouped selections designed to simplify discovery while honoring the premium quality of each gift.
-            </p>
           </div>
 
           {/* Collections Grid */}
@@ -37,7 +34,7 @@ export default function CollectionsPage() {
             {COLLECTIONS.map((c) => (
               <div
                 key={c.slug}
-                className="group relative flex flex-col bg-white border border-brand-gold/15 rounded-lg overflow-hidden hover:shadow-md transition-all duration-300"
+                className="group relative flex flex-col bg-white border border-brand-gold/10 rounded overflow-hidden card-hover-effect"
               >
                 {/* Image Wrap */}
                 <Link
@@ -48,20 +45,20 @@ export default function CollectionsPage() {
                   <img
                     src={c.heroImage}
                     alt={`${c.name} Collection Showcase`}
-                    className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    className="h-full w-full object-cover opacity-90 transition-transform duration-500 group-hover:scale-[1.02]"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-black/25 group-hover:bg-black/15 transition-colors duration-300" />
+                  <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-300" />
                 </Link>
 
                 {/* Details */}
                 <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
                   <div className="space-y-2">
-                    <span className="font-sans text-[9px] font-bold tracking-widest text-brand-gold uppercase">
-                      Studio Catalogue
+                    <span className="font-sans text-[8px] font-bold tracking-widest text-brand-gold uppercase block">
+                      Studio Series
                     </span>
-                    <Link href={`/collections/${c.slug}`} className="focus:outline-none">
-                      <h2 className="font-serif text-2xl font-medium text-brand-charcoal hover:text-brand-rose transition-colors">
+                    <Link href={`/collections/${c.slug}`} className="focus:outline-none block">
+                      <h2 className="font-serif text-2xl font-light text-brand-charcoal hover:text-brand-rose transition-colors">
                         {c.name}
                       </h2>
                     </Link>
@@ -69,13 +66,13 @@ export default function CollectionsPage() {
                       {c.description}
                     </p>
                   </div>
-                  <div className="pt-2 border-t border-brand-gold/10">
+                  <div className="pt-4 border-t border-brand-gold/10">
                     <Link
                       href={`/collections/${c.slug}`}
                       className="inline-flex items-center gap-1.5 font-sans text-xs font-bold tracking-wider uppercase text-brand-charcoal hover:text-brand-rose transition-colors duration-200"
                     >
                       <span>Explore Collection</span>
-                      <ArrowRight className="h-4 w-4 text-brand-gold" />
+                      <ArrowRight className="h-4 w-4 text-brand-rose" />
                     </Link>
                   </div>
                 </div>

@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { MessageCircle, Sparkles, Check, Truck } from "lucide-react";
+import { MessageCircle, Check, Truck } from "lucide-react";
 import { getWhatsAppLink } from "../utils/whatsapp";
 
 interface ProductConfiguratorProps {
@@ -46,18 +46,17 @@ export default function ProductConfigurator({
   return (
     <div className="space-y-6">
       {/* 1. Price Tag */}
-      <div className="border-b border-brand-gold/15 pb-4">
-        <span className="font-serif text-lg sm:text-xl font-semibold italic text-brand-rose">
+      <div className="border-b border-brand-gold/10 pb-4">
+        <span className="font-sans text-lg font-bold text-brand-charcoal">
           {price}
         </span>
       </div>
 
       {/* 2. Interactive Configurator (Only show if product is customizable) */}
       {customizable && (
-        <div className="space-y-5 rounded-lg border border-brand-gold/20 bg-white p-5 shadow-sm">
-          <h3 className="font-sans text-[10px] font-bold tracking-widest text-brand-gold uppercase flex items-center gap-1.5 border-b border-brand-gold/10 pb-2">
-            <Sparkles className="h-3.5 w-3.5 text-brand-rose" />
-            <span>Customize Your Hamper details</span>
+        <div className="space-y-5 rounded border border-brand-gold/15 bg-white p-5">
+          <h3 className="font-sans text-[10px] font-bold tracking-widest text-brand-gold uppercase border-b border-brand-gold/10 pb-2">
+            Customize details
           </h3>
 
           {/* Ribbon Selection */}
@@ -78,7 +77,7 @@ export default function ProductConfigurator({
                   }`}
                 >
                   <span>{opt.split(" ")[1] || opt}</span>
-                  {ribbon === opt && <Check className="h-3 w-3 text-brand-rose" />}
+                  {ribbon === opt && <Check className="h-3.5 w-3.5 text-brand-rose" />}
                 </button>
               ))}
             </div>
@@ -102,7 +101,7 @@ export default function ProductConfigurator({
                   }`}
                 >
                   <span>{opt.split(" ")[1] || opt}</span>
-                  {seal === opt && <Check className="h-3 w-3 text-brand-rose" />}
+                  {seal === opt && <Check className="h-3.5 w-3.5 text-brand-rose" />}
                 </button>
               ))}
             </div>
@@ -126,7 +125,7 @@ export default function ProductConfigurator({
                   }`}
                 >
                   <span>{opt}</span>
-                  {card === opt && <Check className="h-3 w-3 text-brand-rose" />}
+                  {card === opt && <Check className="h-3.5 w-3.5 text-brand-rose" />}
                 </button>
               ))}
             </div>
@@ -161,14 +160,14 @@ export default function ProductConfigurator({
       <div className="pt-2 flex flex-col sm:flex-row gap-3">
         <button
           onClick={handleWhatsAppEnquiry}
-          className="flex-1 flex items-center justify-center gap-2 rounded-full bg-brand-rose py-4 font-sans text-xs font-bold tracking-widest uppercase text-white hover:bg-brand-rose/90 transition-all shadow-md cursor-pointer"
+          className="flex-1 flex items-center justify-center gap-2 rounded bg-brand-rose py-3.5 font-sans text-xs font-bold tracking-widest uppercase text-white hover:bg-brand-rose/90 transition-all cursor-pointer"
         >
           <MessageCircle className="h-4 w-4 text-white" />
           <span>{customizable ? "Customize & Enquire" : "Enquire on WhatsApp"}</span>
         </button>
         <Link
           href="/customize"
-          className="flex-1 flex items-center justify-center gap-2 rounded-full border border-brand-gold/45 bg-white py-4 font-sans text-xs font-bold tracking-widest uppercase text-brand-charcoal hover:border-brand-rose hover:bg-brand-rose/5 transition-all"
+          className="flex-1 flex items-center justify-center gap-2 rounded border border-brand-gold/45 bg-white py-3.5 font-sans text-xs font-bold tracking-widest uppercase text-brand-charcoal hover:border-brand-rose hover:bg-brand-rose/5 transition-all"
         >
           <span>Build Custom Hamper</span>
         </Link>

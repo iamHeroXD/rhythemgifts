@@ -90,7 +90,7 @@ export default function CustomGiftBuilder() {
   };
 
   return (
-    <div className="mx-auto max-w-2xl bg-white border border-brand-gold/15 p-6 sm:p-10 shadow-sm rounded-lg">
+    <div className="mx-auto max-w-2xl bg-white border border-brand-gold/10 p-6 sm:p-10 rounded">
       {/* Progress Bar (Hide on Step 6) */}
       {step <= totalSteps && (
         <div className="mb-8">
@@ -98,7 +98,7 @@ export default function CustomGiftBuilder() {
             <span>Concierge Step {step} of {totalSteps}</span>
             <span>{Math.round(((step - 1) / (totalSteps - 1)) * 100)}% Complete</span>
           </div>
-          <div className="h-1.5 w-full bg-brand-ivory rounded-full overflow-hidden border border-brand-gold/10">
+          <div className="h-1.5 w-full bg-brand-ivory rounded overflow-hidden border border-brand-gold/10">
             <div
               className="h-full bg-brand-rose transition-all duration-300 ease-out"
               style={{ width: `${(step / totalSteps) * 100}%` }}
@@ -112,7 +112,7 @@ export default function CustomGiftBuilder() {
         {step === 1 && (
           <div className="space-y-6 animate-fade-in">
             <div className="space-y-1">
-              <h2 className="font-serif text-2xl font-semibold text-brand-charcoal">
+              <h2 className="font-serif text-2xl font-light text-brand-charcoal">
                 What are you celebrating?
               </h2>
               <p className="font-sans text-xs text-brand-charcoal/50">
@@ -129,10 +129,10 @@ export default function CustomGiftBuilder() {
                     setOccasion(o);
                     if (o !== "Other") setCustomOccasion("");
                   }}
-                  className={`flex items-center justify-between rounded-lg p-4 font-sans text-xs font-semibold uppercase tracking-wider text-left border transition-all ${
+                  className={`flex items-center justify-between rounded p-4 font-sans text-xs font-semibold uppercase tracking-wider text-left border transition-all ${
                     occasion === o
                       ? "border-brand-rose bg-brand-rose/5 text-brand-rose"
-                      : "border-brand-gold/20 bg-brand-ivory hover:border-brand-gold text-brand-charcoal/80"
+                      : "border-brand-gold/20 bg-brand-ivory hover:border-brand-gold text-brand-charcoal/85"
                   }`}
                 >
                   <span>{o}</span>
@@ -143,7 +143,7 @@ export default function CustomGiftBuilder() {
 
             {occasion === "Other" && (
               <div className="space-y-2 animate-fade-in">
-                <label className="block font-sans text-xs font-bold tracking-wider text-brand-gold uppercase">
+                <label className="block font-sans text-[10px] font-bold tracking-wider text-brand-gold uppercase">
                   Specify Occasion
                 </label>
                 <input
@@ -151,7 +151,7 @@ export default function CustomGiftBuilder() {
                   placeholder="E.g., Housewarming, Retirement, Graduation"
                   value={customOccasion}
                   onChange={(e) => setCustomOccasion(e.target.value)}
-                  className="w-full bg-brand-ivory border border-brand-gold/25 rounded-md px-4 py-3 font-sans text-xs font-semibold text-brand-charcoal focus:border-brand-rose focus:ring-1 focus:ring-brand-rose focus:outline-none"
+                  className="w-full bg-brand-ivory border border-brand-gold/25 rounded px-4 py-3 font-sans text-xs font-semibold text-brand-charcoal focus:border-brand-rose focus:outline-none placeholder-brand-charcoal/30"
                   required
                 />
               </div>
@@ -163,7 +163,7 @@ export default function CustomGiftBuilder() {
         {step === 2 && (
           <div className="space-y-6 animate-fade-in">
             <div className="space-y-1">
-              <h2 className="font-serif text-2xl font-semibold text-brand-charcoal">
+              <h2 className="font-serif text-2xl font-light text-brand-charcoal">
                 Who is this gift for?
               </h2>
               <p className="font-sans text-xs text-brand-charcoal/50">
@@ -180,10 +180,10 @@ export default function CustomGiftBuilder() {
                     setRecipient(r);
                     if (r !== "Other") setCustomRecipient("");
                   }}
-                  className={`flex items-center justify-between rounded-lg p-4 font-sans text-xs font-semibold uppercase tracking-wider text-left border transition-all ${
+                  className={`flex items-center justify-between rounded p-4 font-sans text-xs font-semibold uppercase tracking-wider text-left border transition-all ${
                     recipient === r
                       ? "border-brand-rose bg-brand-rose/5 text-brand-rose"
-                      : "border-brand-gold/20 bg-brand-ivory hover:border-brand-gold text-brand-charcoal/80"
+                      : "border-brand-gold/20 bg-brand-ivory hover:border-brand-gold text-brand-charcoal/85"
                   }`}
                 >
                   <span>{r}</span>
@@ -194,7 +194,7 @@ export default function CustomGiftBuilder() {
 
             {recipient === "Other" && (
               <div className="space-y-2 animate-fade-in">
-                <label className="block font-sans text-xs font-bold tracking-wider text-brand-gold uppercase">
+                <label className="block font-sans text-[10px] font-bold tracking-wider text-brand-gold uppercase">
                   Specify Recipient Relationship
                 </label>
                 <input
@@ -202,7 +202,7 @@ export default function CustomGiftBuilder() {
                   placeholder="E.g., Mentor, Child, Doctor, Neighbour"
                   value={customRecipient}
                   onChange={(e) => setCustomRecipient(e.target.value)}
-                  className="w-full bg-brand-ivory border border-brand-gold/25 rounded-md px-4 py-3 font-sans text-xs font-semibold text-brand-charcoal focus:border-brand-rose focus:ring-1 focus:ring-brand-rose focus:outline-none"
+                  className="w-full bg-brand-ivory border border-brand-gold/25 rounded px-4 py-3 font-sans text-xs font-semibold text-brand-charcoal focus:border-brand-rose focus:outline-none placeholder-brand-charcoal/30"
                   required
                 />
               </div>
@@ -214,7 +214,7 @@ export default function CustomGiftBuilder() {
         {step === 3 && (
           <div className="space-y-6 animate-fade-in">
             <div className="space-y-1">
-              <h2 className="font-serif text-2xl font-semibold text-brand-charcoal">
+              <h2 className="font-serif text-2xl font-light text-brand-charcoal">
                 What is your approximate budget?
               </h2>
               <p className="font-sans text-xs text-brand-charcoal/50">
@@ -231,10 +231,10 @@ export default function CustomGiftBuilder() {
                     setBudget(b);
                     if (b !== "Other") setCustomBudget("");
                   }}
-                  className={`flex items-center justify-between rounded-lg p-4 font-sans text-xs font-semibold uppercase tracking-wider text-left border w-full transition-all ${
+                  className={`flex items-center justify-between rounded p-4 font-sans text-xs font-semibold uppercase tracking-wider text-left border w-full transition-all ${
                     budget === b
                       ? "border-brand-rose bg-brand-rose/5 text-brand-rose"
-                      : "border-brand-gold/20 bg-brand-ivory hover:border-brand-gold text-brand-charcoal/80"
+                      : "border-brand-gold/20 bg-brand-ivory hover:border-brand-gold text-brand-charcoal/85"
                   }`}
                 >
                   <span>{b}</span>
@@ -245,7 +245,7 @@ export default function CustomGiftBuilder() {
 
             {budget === "Other" && (
               <div className="space-y-2 animate-fade-in">
-                <label className="block font-sans text-xs font-bold tracking-wider text-brand-gold uppercase">
+                <label className="block font-sans text-[10px] font-bold tracking-wider text-brand-gold uppercase">
                   Enter Custom Budget Limit
                 </label>
                 <input
@@ -253,7 +253,7 @@ export default function CustomGiftBuilder() {
                   placeholder="E.g., ₹1000, ₹8000, Flexible"
                   value={customBudget}
                   onChange={(e) => setCustomBudget(e.target.value)}
-                  className="w-full bg-brand-ivory border border-brand-gold/25 rounded-md px-4 py-3 font-sans text-xs font-semibold text-brand-charcoal focus:border-brand-rose focus:ring-1 focus:ring-brand-rose focus:outline-none"
+                  className="w-full bg-brand-ivory border border-brand-gold/25 rounded px-4 py-3 font-sans text-xs font-semibold text-brand-charcoal focus:border-brand-rose focus:outline-none placeholder-brand-charcoal/30"
                   required
                 />
               </div>
@@ -265,7 +265,7 @@ export default function CustomGiftBuilder() {
         {step === 4 && (
           <div className="space-y-6 animate-fade-in">
             <div className="space-y-1">
-              <h2 className="font-serif text-2xl font-semibold text-brand-charcoal">
+              <h2 className="font-serif text-2xl font-light text-brand-charcoal">
                 What is the overall vibe?
               </h2>
               <p className="font-sans text-xs text-brand-charcoal/50">
@@ -279,10 +279,10 @@ export default function CustomGiftBuilder() {
                   key={v}
                   type="button"
                   onClick={() => setVibe(v)}
-                  className={`flex items-center justify-between rounded-lg p-4 font-sans text-xs font-semibold uppercase tracking-wider text-left border w-full transition-all ${
+                  className={`flex items-center justify-between rounded p-4 font-sans text-xs font-semibold uppercase tracking-wider text-left border w-full transition-all ${
                     vibe === v
                       ? "border-brand-rose bg-brand-rose/5 text-brand-rose"
-                      : "border-brand-gold/20 bg-brand-ivory hover:border-brand-gold text-brand-charcoal/80"
+                      : "border-brand-gold/20 bg-brand-ivory hover:border-brand-gold text-brand-charcoal/85"
                   }`}
                 >
                   <span>{v}</span>
@@ -297,7 +297,7 @@ export default function CustomGiftBuilder() {
         {step === 5 && (
           <div className="space-y-6 animate-fade-in">
             <div className="space-y-1">
-              <h2 className="font-serif text-2xl font-semibold text-brand-charcoal">
+              <h2 className="font-serif text-2xl font-light text-brand-charcoal">
                 Any specific requests or elements?
               </h2>
               <p className="font-sans text-xs text-brand-charcoal/50">
@@ -311,12 +311,12 @@ export default function CustomGiftBuilder() {
                 placeholder="E.g., Please include a custom printed ceramic cup with their photo, 5 KitKats, red roses, and a surprise card signed 'With love, Arun'. Need doorstep surprise delivery around 8:00 PM."
                 value={details}
                 onChange={(e) => setDetails(e.target.value)}
-                className="w-full bg-brand-ivory border border-brand-gold/25 rounded-md px-4 py-3 font-sans text-xs font-semibold text-brand-charcoal focus:border-brand-rose focus:ring-1 focus:ring-brand-rose focus:outline-none placeholder-brand-charcoal/30 resize-none leading-relaxed"
+                className="w-full bg-brand-ivory border border-brand-gold/25 rounded px-4 py-3 font-sans text-xs font-semibold text-brand-charcoal focus:border-brand-rose focus:outline-none placeholder-brand-charcoal/30 resize-none leading-relaxed"
               />
             </div>
 
             {/* Summary Block */}
-            <div className="rounded-lg border border-brand-gold/20 bg-brand-ivory/50 p-4 space-y-2">
+            <div className="rounded border border-brand-gold/15 bg-brand-ivory/50 p-4 space-y-2">
               <h3 className="font-sans text-[10px] font-bold tracking-widest text-brand-gold uppercase flex items-center gap-1">
                 <Gift className="h-3 w-3 text-brand-rose" />
                 <span>Your Gifting Details Summary</span>
@@ -341,10 +341,10 @@ export default function CustomGiftBuilder() {
         {step === 6 && (
           <div className="space-y-6 text-center animate-fade-in py-4">
             <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-brand-rose/10 border border-brand-rose/30">
-              <Sparkles className="h-6 w-6 text-brand-rose animate-pulse" />
+              <Sparkles className="h-6 w-6 text-brand-rose" />
             </div>
             <div className="space-y-2">
-              <h2 className="font-serif text-2xl sm:text-3xl font-semibold text-brand-charcoal">
+              <h2 className="font-serif text-2xl sm:text-3xl font-light text-brand-charcoal">
                 Your Enquiry is Ready!
               </h2>
               <p className="font-sans text-xs text-brand-charcoal/60 max-w-sm mx-auto leading-relaxed">
@@ -352,7 +352,7 @@ export default function CustomGiftBuilder() {
               </p>
             </div>
 
-            <div className="rounded-lg border border-brand-gold/20 bg-brand-ivory/50 p-6 text-left max-w-md mx-auto space-y-4 shadow-sm">
+            <div className="rounded border border-brand-gold/15 bg-brand-ivory/50 p-6 text-left max-w-md mx-auto space-y-4">
               <h3 className="font-sans text-[10px] font-bold tracking-widest text-brand-gold uppercase border-b border-brand-gold/10 pb-2 flex items-center gap-1.5">
                 <Gift className="h-3.5 w-3.5 text-brand-rose" />
                 <span>Custom Configuration Summary</span>
@@ -381,7 +381,7 @@ export default function CustomGiftBuilder() {
               <button
                 type="button"
                 onClick={handleSendToWhatsApp}
-                className="flex w-full items-center justify-center gap-2 rounded-full bg-brand-rose py-4 font-sans text-xs font-bold tracking-widest uppercase text-white hover:bg-brand-rose/90 transition-all shadow-md cursor-pointer hover:scale-[1.02] transform duration-150"
+                className="flex w-full items-center justify-center gap-2 rounded bg-brand-rose py-4 font-sans text-xs font-bold tracking-widest uppercase text-white hover:bg-brand-rose/90 transition-all cursor-pointer"
               >
                 <MessageCircle className="h-4.5 w-4.5 text-white" />
                 <span>Send via WhatsApp</span>
@@ -414,7 +414,7 @@ export default function CustomGiftBuilder() {
               <button
                 type="button"
                 onClick={prevStep}
-                className="flex items-center gap-2 rounded-full border border-brand-gold/30 bg-white px-5 py-2.5 font-sans text-[10px] font-bold tracking-widest uppercase text-brand-charcoal hover:border-brand-rose transition-colors duration-200"
+                className="flex items-center gap-2 rounded border border-brand-gold/30 bg-white px-5 py-2.5 font-sans text-[10px] font-bold tracking-widest uppercase text-brand-charcoal hover:border-brand-rose transition-colors duration-200"
               >
                 <ArrowLeft className="h-3.5 w-3.5" />
                 <span>Back</span>
@@ -428,7 +428,7 @@ export default function CustomGiftBuilder() {
                 type="button"
                 onClick={nextStep}
                 disabled={!isStepValid()}
-                className="flex items-center gap-2 rounded-full bg-brand-charcoal px-6 py-3 font-sans text-[10px] font-bold tracking-widest uppercase text-white hover:bg-brand-rose transition-all duration-300 disabled:opacity-30 disabled:hover:bg-brand-charcoal shadow-sm cursor-pointer"
+                className="flex items-center gap-2 rounded bg-brand-charcoal px-6 py-3 font-sans text-[10px] font-bold tracking-widest uppercase text-white hover:bg-brand-rose transition-all duration-200 disabled:opacity-30 disabled:hover:bg-brand-charcoal shadow-sm cursor-pointer"
               >
                 <span>Continue</span>
                 <ArrowRight className="h-3.5 w-3.5" />
@@ -436,7 +436,7 @@ export default function CustomGiftBuilder() {
             ) : (
               <button
                 type="submit"
-                className="flex items-center gap-2 rounded-full bg-brand-rose px-6 py-3.5 font-sans text-xs font-bold tracking-widest uppercase text-white hover:bg-brand-rose/90 transition-all duration-300 shadow-md cursor-pointer animate-pulse"
+                className="flex items-center gap-2 rounded bg-brand-rose px-6 py-3.5 font-sans text-xs font-bold tracking-widest uppercase text-white hover:bg-brand-rose/90 transition-all duration-200 shadow-md cursor-pointer"
               >
                 <span>Generate Custom Enquiry</span>
                 <MessageCircle className="h-4.5 w-4.5 text-white" />

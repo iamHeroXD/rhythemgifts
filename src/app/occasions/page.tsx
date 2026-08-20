@@ -5,7 +5,7 @@ import Footer from "../../components/Footer";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import ProductCard from "../../components/ProductCard";
 import { OCCASIONS, PRODUCTS } from "../../data/giftingData";
-import { ArrowRight, Compass } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 export const metadata = {
   title: "Shop Gifts by Occasion | Rhythm Gifts & Hampers",
@@ -21,20 +21,17 @@ export default function OccasionsPage() {
           <Breadcrumbs items={[{ name: "Shop by Occasion" }]} />
 
           {/* Heading */}
-          <div className="text-center max-w-2xl mx-auto mt-8 mb-16 space-y-3">
+          <div className="text-center max-w-2xl mx-auto mt-8 mb-16 space-y-2">
             <span className="font-sans text-[10px] font-bold tracking-widest text-brand-gold uppercase">
               Curated Occasions
             </span>
-            <h1 className="font-serif text-4xl sm:text-5xl font-medium tracking-tight text-brand-charcoal">
+            <h1 className="font-serif text-4xl sm:text-5xl font-light tracking-tight text-brand-charcoal text-balance">
               Make their day theirs.
             </h1>
-            <p className="font-sans text-xs sm:text-sm text-brand-charcoal/60 leading-relaxed">
-              Explore custom-made designs crafted to reflect the exact feeling of your celebrations.
-            </p>
           </div>
 
           {/* Occasion List Blocks */}
-          <div className="space-y-20">
+          <div className="space-y-24">
             {OCCASIONS.map((occ, index) => {
               const matchedProducts = PRODUCTS.filter((p) => p.occasions.includes(occ.slug)).slice(0, 3);
               const isEven = index % 2 === 0;
@@ -43,13 +40,13 @@ export default function OccasionsPage() {
                 <div
                   key={occ.slug}
                   id={occ.slug}
-                  className="border-b border-brand-gold/15 pb-16 last:border-0 scroll-mt-24 space-y-8"
+                  className="border-b border-brand-gold/10 pb-16 last:border-0 scroll-mt-24 space-y-8"
                 >
                   {/* Occasion Intro Grid */}
-                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                    {/* Image Block */}
+                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    {/* Image Block (Desirable photography) */}
                     <div
-                      className={`lg:col-span-5 relative aspect-[3/2] sm:aspect-[16/10] overflow-hidden rounded-lg border border-brand-gold/15 bg-brand-charcoal ${
+                      className={`lg:col-span-5 relative aspect-[3/2] sm:aspect-[16/10] overflow-hidden rounded border border-brand-gold/15 bg-brand-charcoal ${
                         isEven ? "lg:order-first" : "lg:order-last"
                       }`}
                     >
@@ -57,17 +54,17 @@ export default function OccasionsPage() {
                       <img
                         src={occ.image}
                         alt={`${occ.name} Gifting Arrangements`}
-                        className="h-full w-full object-cover"
+                        className="h-full w-full object-cover opacity-90 image-zoom-effect"
                         loading="lazy"
                       />
                     </div>
 
                     {/* Text Block */}
-                    <div className="lg:col-span-7 space-y-4">
+                    <div className="lg:col-span-7 space-y-4 text-left">
                       <span className="font-sans text-[9px] font-bold tracking-widest text-brand-gold uppercase">
                         Celebrating Moments
                       </span>
-                      <h2 className="font-serif text-2xl sm:text-3xl font-medium text-brand-charcoal">
+                      <h2 className="font-serif text-2xl sm:text-3xl font-light text-brand-charcoal">
                         {occ.name}
                       </h2>
                       <p className="font-serif text-lg italic text-brand-rose leading-tight">
@@ -88,13 +85,13 @@ export default function OccasionsPage() {
                     </div>
                   </div>
 
-                  {/* Underneath: Top 3 Matching Gifts */}
+                  {/* Matching Gifts (Breathable structured grid) */}
                   {matchedProducts.length > 0 && (
-                    <div className="space-y-4 pt-4">
+                    <div className="space-y-4 pt-4 text-left">
                       <h3 className="font-sans text-[10px] font-bold tracking-widest text-brand-gold uppercase border-b border-brand-gold/10 pb-1">
                         Featured for {occ.name}
                       </h3>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                         {matchedProducts.map((product) => (
                           <ProductCard key={product.id} product={product} />
                         ))}

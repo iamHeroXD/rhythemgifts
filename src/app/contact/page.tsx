@@ -2,7 +2,7 @@ import React from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import Breadcrumbs from "../../components/Breadcrumbs";
-import { MessageCircle, MapPin, Phone, HelpCircle } from "lucide-react";
+import { MessageCircle, MapPin, HelpCircle } from "lucide-react";
 import { BUSINESS_INFO } from "../../data/giftingData";
 import { getWhatsAppLink } from "../../utils/whatsapp";
 
@@ -11,12 +11,12 @@ function InstagramIcon(props: React.SVGProps<SVGSVGElement>) {
     <svg
       {...props}
       xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
+      width="20"
+      height="20"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      strokeWidth="2"
+      strokeWidth="1.5"
       strokeLinecap="round"
       strokeLinejoin="round"
     >
@@ -48,7 +48,7 @@ export default function ContactPage() {
             <span className="font-sans text-[10px] font-bold tracking-widest text-brand-gold uppercase">
               Get In Touch
             </span>
-            <h1 className="font-serif text-4xl sm:text-5xl font-medium tracking-tight text-brand-charcoal">
+            <h1 className="font-serif text-4xl sm:text-5xl font-light tracking-tight text-brand-charcoal text-balance">
               Let&apos;s build a moment together.
             </h1>
             <p className="font-sans text-xs sm:text-sm text-brand-charcoal/65 leading-relaxed">
@@ -57,18 +57,20 @@ export default function ContactPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
+            
             {/* Left: Contact Information Cards */}
             <div className="md:col-span-1 space-y-4">
+              
               {/* WhatsApp Card */}
-              <div className="bg-white border border-brand-gold/15 p-6 rounded-lg space-y-3">
-                <div className="inline-flex rounded-full bg-brand-rose/5 p-2.5 text-brand-rose">
-                  <MessageCircle className="h-5 w-5" />
+              <div className="bg-white border border-brand-gold/10 p-6 rounded space-y-3">
+                <div className="inline-flex rounded-full bg-brand-rose/5 p-2 text-brand-rose">
+                  <MessageCircle className="h-4.5 w-4.5" />
                 </div>
                 <div>
-                  <h3 className="font-serif text-base font-semibold text-brand-charcoal">
+                  <h3 className="font-serif text-base font-light text-brand-charcoal">
                     WhatsApp Enquiry
                   </h3>
-                  <p className="font-sans text-[11px] text-brand-charcoal/50 mt-0.5">
+                  <p className="font-sans text-[10px] text-brand-charcoal/50 mt-0.5">
                     Fastest way to discuss options & pricing.
                   </p>
                 </div>
@@ -83,15 +85,15 @@ export default function ContactPage() {
               </div>
 
               {/* Instagram Card */}
-              <div className="bg-white border border-brand-gold/15 p-6 rounded-lg space-y-3">
-                <div className="inline-flex rounded-full bg-brand-gold/5 p-2.5 text-brand-gold">
-                  <InstagramIcon className="h-5 w-5" />
+              <div className="bg-white border border-brand-gold/10 p-6 rounded space-y-3">
+                <div className="inline-flex rounded-full bg-brand-gold/5 p-2 text-brand-gold">
+                  <InstagramIcon className="h-4.5 w-4.5" />
                 </div>
                 <div>
-                  <h3 className="font-serif text-base font-semibold text-brand-charcoal">
+                  <h3 className="font-serif text-base font-light text-brand-charcoal">
                     Instagram Direct Message
                   </h3>
-                  <p className="font-sans text-[11px] text-brand-charcoal/50 mt-0.5">
+                  <p className="font-sans text-[10px] text-brand-charcoal/50 mt-0.5">
                     Explore visual posts and DM us.
                   </p>
                 </div>
@@ -106,122 +108,101 @@ export default function ContactPage() {
               </div>
 
               {/* Location Card */}
-              <div className="bg-white border border-brand-gold/15 p-6 rounded-lg space-y-3">
-                <div className="inline-flex rounded-full bg-brand-charcoal/5 p-2.5 text-brand-charcoal">
-                  <MapPin className="h-5 w-5 text-brand-gold" />
+              <div className="bg-white border border-brand-gold/10 p-6 rounded space-y-3">
+                <div className="inline-flex rounded-full bg-brand-charcoal/5 p-2 text-brand-gold">
+                  <MapPin className="h-4.5 w-4.5 text-brand-gold" />
                 </div>
                 <div>
-                  <h3 className="font-serif text-base font-semibold text-brand-charcoal">
+                  <h3 className="font-serif text-base font-light text-brand-charcoal">
                     Studio Location
                   </h3>
-                  <p className="font-sans text-[11px] text-brand-charcoal/50 mt-0.5">
+                  <p className="font-sans text-[10px] text-brand-charcoal/50 mt-0.5">
                     Local operations & doorstep delivery.
                   </p>
                 </div>
-                <span className="block font-sans text-xs font-semibold text-brand-charcoal/80">
+                <span className="block font-sans text-xs font-semibold text-brand-charcoal/80 leading-tight">
                   {BUSINESS_INFO.location}
                 </span>
               </div>
             </div>
 
-            {/* Right: Quick Action Inquiry Options */}
-            <div className="md:col-span-2 bg-white border border-brand-gold/15 p-6 sm:p-10 rounded-lg flex flex-col justify-between">
+            {/* Right: Quick Action Inquiry Options & Pipeline Description */}
+            <div className="md:col-span-2 bg-white border border-brand-gold/10 p-6 sm:p-8 rounded flex flex-col justify-between">
               <div className="space-y-6">
                 <div>
-                  <h3 className="font-serif text-xl font-semibold text-brand-charcoal mb-2">
-                    How can our concierges help you today?
+                  <h3 className="font-serif text-xl font-light text-brand-charcoal mb-2">
+                    What happens after you contact us?
                   </h3>
                   <p className="font-sans text-xs text-brand-charcoal/60 leading-relaxed">
-                    Select a path to start a pre-filled enquiry template directly on WhatsApp. This skips the hassle of explaining requirements from scratch.
+                    We keep things human and simple. You won&apos;t be routed through complex checkout shopping systems.
                   </p>
                 </div>
 
-                <div className="space-y-3">
-                  {/* Option 1 */}
-                  <a
-                    href="/customize"
-                    className="group flex items-center justify-between rounded-lg bg-brand-ivory p-4 border border-brand-gold/15 hover:border-brand-rose transition-all"
-                  >
+                {/* The 3-Step Simple Pipeline */}
+                <div className="grid grid-cols-1 gap-4 font-sans text-xs">
+                  <div className="flex gap-3">
+                    <span className="font-serif text-lg font-bold text-brand-rose/60">01</span>
                     <div>
-                      <h4 className="font-serif text-sm font-semibold text-brand-charcoal group-hover:text-brand-rose transition-colors">
-                        Build a Customized Hamper
-                      </h4>
-                      <p className="font-sans text-[11px] text-brand-charcoal/60 mt-0.5">
-                        Answer 5 quick steps to select recipient, occasion, budget, and custom theme.
-                      </p>
+                      <h4 className="font-bold text-brand-charcoal">Establish Details on WhatsApp</h4>
+                      <p className="text-brand-charcoal/60 mt-0.5">Click one of the templates or build a hamper via our online questionnaire. We align on initials, ribbon choices, and delivery slot details directly in chat.</p>
                     </div>
-                    <ArrowRightIcon className="h-4 w-4 text-brand-gold group-hover:text-brand-rose transition-colors" />
-                  </a>
+                  </div>
+                  <div className="flex gap-3">
+                    <span className="font-serif text-lg font-bold text-brand-rose/60">02</span>
+                    <div>
+                      <h4 className="font-bold text-brand-charcoal">Curation Draft & Sourcing</h4>
+                      <p className="text-brand-charcoal/60 mt-0.5">We share design mockups. Once you approve, we secure local morning flowers, custom bake your cakes, and hand-assemble your custom plaques at our studio.</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-3">
+                    <span className="font-serif text-lg font-bold text-brand-rose/60">03</span>
+                    <div>
+                      <h4 className="font-bold text-brand-charcoal">Doorstep Surprise Reveal</h4>
+                      <p className="text-brand-charcoal/60 mt-0.5">Our coordinator executes the delivery at the scheduled slot. We can even send you photo/video confirmations of the unboxing smile.</p>
+                    </div>
+                  </div>
+                </div>
 
-                  {/* Option 2 */}
-                  <a
-                    href={surpriseEnquiryLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group flex items-center justify-between rounded-lg bg-brand-ivory p-4 border border-brand-gold/15 hover:border-brand-rose transition-all"
-                  >
-                    <div>
-                      <h4 className="font-serif text-sm font-semibold text-brand-charcoal group-hover:text-brand-rose transition-colors">
-                        Plan a Doorstep Surprise Delivery
-                      </h4>
-                      <p className="font-sans text-[11px] text-brand-charcoal/60 mt-0.5">
-                        Send cakes, bouquets, custom photo gifts, and coordinate an arrival experience.
-                      </p>
-                    </div>
-                    <ArrowRightIcon className="h-4 w-4 text-brand-gold group-hover:text-brand-rose transition-colors" />
-                  </a>
+                <div className="space-y-2.5 pt-4 border-t border-brand-gold/10">
+                  <h4 className="font-serif text-base font-light text-brand-charcoal">Pre-filled WhatsApp shortcuts:</h4>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <a
+                      href={customEnquiryLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-between rounded bg-brand-ivory p-4 border border-brand-gold/15 hover:border-brand-rose transition-all"
+                    >
+                      <span className="font-sans text-xs font-semibold text-brand-charcoal">Enquire Hamper Customization</span>
+                      <MessageCircle className="h-4 w-4 text-brand-rose flex-shrink-0 ml-2" />
+                    </a>
 
-                  {/* Option 3 */}
-                  <a
-                    href="/faq"
-                    className="group flex items-center justify-between rounded-lg bg-brand-ivory p-4 border border-brand-gold/15 hover:border-brand-rose transition-all"
-                  >
-                    <div>
-                      <h4 className="font-serif text-sm font-semibold text-brand-charcoal group-hover:text-brand-rose transition-colors">
-                        Read Gifting FAQs
-                      </h4>
-                      <p className="font-sans text-[11px] text-brand-charcoal/60 mt-0.5">
-                        Find quick answers regarding order timelines, delivery limits, and customized frames.
-                      </p>
-                    </div>
-                    <HelpCircle className="h-4 w-4 text-brand-gold group-hover:text-brand-rose transition-colors" />
-                  </a>
+                    <a
+                      href={surpriseEnquiryLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-between rounded bg-brand-ivory p-4 border border-brand-gold/15 hover:border-brand-rose transition-all"
+                    >
+                      <span className="font-sans text-xs font-semibold text-brand-charcoal">Plan Doorstep Surprise</span>
+                      <MessageCircle className="h-4 w-4 text-brand-rose flex-shrink-0 ml-2" />
+                    </a>
+                  </div>
                 </div>
               </div>
 
-              <div className="pt-8 border-t border-brand-gold/10 text-center md:text-left mt-6">
+              <div className="pt-6 border-t border-brand-gold/10 text-center md:text-left mt-6">
                 <span className="font-sans text-[10px] font-bold tracking-widest text-brand-gold uppercase block mb-1">
                   Urgent Order Notice
                 </span>
                 <p className="font-sans text-[11px] text-brand-charcoal/50 leading-relaxed">
-                  Have an urgent or same-day surprise delivery in Trivandrum? Call us directly on <a href={`tel:${BUSINESS_INFO.phone}`} className="font-bold text-brand-charcoal hover:text-brand-rose">{BUSINESS_INFO.phone}</a> to check immediate slot availability.
+                  Have an urgent delivery requirement? Reach us directly via call: <a href={`tel:${BUSINESS_INFO.phone}`} className="font-bold text-brand-charcoal hover:text-brand-rose">{BUSINESS_INFO.phone}</a> to inspect slot timings.
                 </p>
               </div>
             </div>
+
           </div>
         </div>
       </main>
       <Footer />
     </>
-  );
-}
-
-function ArrowRightIcon(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M5 12h14" />
-      <path d="m12 5 7 7-7 7" />
-    </svg>
   );
 }

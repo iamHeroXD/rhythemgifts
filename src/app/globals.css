@@ -12,18 +12,21 @@ body {
   background-color: rgb(var(--background-rgb));
   min-height: 100vh;
   overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 5px;
 }
 ::-webkit-scrollbar-track {
   background: #FAF7F2;
 }
 ::-webkit-scrollbar-thumb {
   background: #C5A880;
-  border-radius: 3px;
+  border-radius: 2px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #B54D6B;
@@ -31,58 +34,65 @@ body {
 
 /* Text selections */
 ::selection {
-  background-color: rgba(197, 168, 128, 0.3);
+  background-color: rgba(181, 77, 107, 0.15);
   color: #121212;
 }
 
-/* Metallic gold text gradient */
-.text-gold-gradient {
-  background: linear-gradient(135deg, #dfc59f 0%, #c5a880 50%, #9e8156 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+/* Premium Focus Ring (Accessibility) */
+*:focus-visible {
+  outline: 2px solid #B54D6B;
+  outline-offset: 4px;
 }
 
-/* Springy card-hover lift effect */
+/* Subtle card-hover lift effect */
 .card-hover-effect {
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
-              box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
-              border-color 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+              border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .card-hover-effect:hover {
-  transform: translateY(-4px) scale(1.01);
-  box-shadow: 0 12px 30px -10px rgba(197, 168, 128, 0.2);
-  border-color: rgba(181, 77, 107, 0.35);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(18, 18, 18, 0.04);
+  border-color: rgba(181, 77, 107, 0.2);
 }
 
-/* Cinematic image zoom on hover */
+/* Subtle image zoom on hover */
 .image-zoom-effect {
-  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .image-zoom-effect:hover {
-  transform: scale(1.06);
+  transform: scale(1.03);
 }
 
-/* Elegant slow rotation */
-.animate-spin-slow {
-  animation: spin-slow 12s linear infinite;
+/* Navigation elegant line reveals */
+.nav-link-underline {
+  position: relative;
 }
-@keyframes spin-slow {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.nav-link-underline::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 1.5px;
+  bottom: -4px;
+  left: 0;
+  background-color: #B54D6B; /* brand-rose */
+  transform-origin: bottom right;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.nav-link-underline:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
 }
 
-/* Fade in up entry */
+/* Fast fade-in-up entry */
 .animate-fade-in-up {
-  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(16px);
+    transform: translateY(12px);
   }
   to {
     opacity: 1;
@@ -93,9 +103,9 @@ body {
 /* --- LIGHTWEIGHT NATIVE SCROLL REVEALS --- */
 .scroll-reveal {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), 
-              transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(16px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform, opacity;
 }
 
@@ -105,13 +115,24 @@ body {
   transform: translateY(0);
 }
 
-/* Stagger delays for grids */
+/* Stagger delays */
 .delay-75 { transition-delay: 75ms; }
 .delay-100 { transition-delay: 100ms; }
 .delay-150 { transition-delay: 150ms; }
 .delay-200 { transition-delay: 200ms; }
 .delay-300 { transition-delay: 300ms; }
-.delay-400 { transition-delay: 400ms; }
+
+/* Prefers Reduced Motion Safeguards */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-delay: 0s !important;
+    animation-duration: 0s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0s !important;
+    scroll-behavior: auto !important;
+    transform: none !important;
+  }
+}
 
 @layer utilities {
   .text-balance {
