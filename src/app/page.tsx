@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -12,9 +12,7 @@ import {
   Sparkles, 
   MessageCircle, 
   Heart, 
-  Star, 
   Gift, 
-  Compass, 
   ChevronRight,
   Award,
   Leaf,
@@ -23,34 +21,107 @@ import {
 } from "lucide-react";
 
 export default function HomePage() {
+  const [loading, setLoading] = useState(true);
   const featuredProducts = PRODUCTS.slice(0, 3);
   const mainWhatsappUrl = getWhatsAppLink("Hi Rhythm Gifts & Hampers! I'd like to ask about creating a customised gift.");
+
+  // Preloader timeout
+  useEffect(() => {
+    const hasPreloaded = sessionStorage.getItem("rhythm-preloaded");
+    if (hasPreloaded) {
+      setLoading(false);
+      return;
+    }
+    const timer = setTimeout(() => {
+      setLoading(false);
+      sessionStorage.setItem("rhythm-preloaded", "true");
+    }, 2400);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Intersection Observer Scroll Reveals
+  useEffect(() => {
+    if (loading) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("reveal-active");
+            observer.unobserve(entry.target); // Unobserve to reveal once
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: "0px 0px -60px 0px" }
+    );
+
+    const revealElements = document.querySelectorAll(".scroll-reveal");
+    revealElements.forEach((el) => observer.observe(el));
+
+    return () => {
+      revealElements.forEach((el) => observer.unobserve(el));
+    };
+  }, [loading]);
+
+  if (loading) {
+    return (
+      <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-brand-charcoal text-brand-ivory transition-opacity duration-700 ease-out">
+        {/* Animated subtle luxury pattern overlay */}
+        <div className="absolute inset-0 opacity-5 bg-[radial-gradient(circle_at_center,_#C5A880_1px,_transparent_1.5px)] bg-[size:24px_24px]" />
+        
+        <div className="relative space-y-5 text-center">
+          {/* Pulsing branding */}
+          <div className="space-y-1">
+            <span className="font-serif text-5xl sm:text-6xl font-light tracking-widest text-brand-ivory block animate-fade-in">Rhythm</span>
+            <span className="font-sans text-[10px] tracking-[0.35em] font-semibold text-brand-gold uppercase block opacity-80">Gifts & Hampers</span>
+          </div>
+
+          {/* Elegant gold line reveal */}
+          <div className="mx-auto h-[1px] w-24 bg-gradient-to-r from-transparent via-brand-gold to-transparent" style={{ animation: 'widthReveal 2s ease-in-out forwards' }} />
+          
+          {/* Location cue */}
+          <p className="font-sans text-[8px] tracking-[0.25em] font-bold text-brand-gold/60 uppercase py-1">
+            Trivandrum, Kerala
+          </p>
+        </div>
+
+        {/* Local CSS for Preloader */}
+        <style jsx global>{`
+          @keyframes widthReveal {
+            from { width: 0px; opacity: 0; }
+            to { width: 140px; opacity: 1; }
+          }
+        `}</style>
+      </div>
+    );
+  }
 
   return (
     <>
       <Header />
       <main className="flex-1 bg-brand-ivory">
         {/* 1. Cinematic Hero Section */}
-        <section className="relative min-h-[90vh] flex items-center justify-center bg-brand-charcoal text-brand-ivory overflow-hidden pt-16">
-          {/* Hero Editorial Image Background */}
+        <section className="relative min-h-[95vh] flex items-center justify-center bg-brand-charcoal text-brand-ivory overflow-hidden pt-16">
+          {/* Hero Editorial Image Background - Moody dark luxury box */}
           <div className="absolute inset-0">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="https://images.unsplash.com/photo-1513201099705-a9746e1e201f?q=80&w=1600&auto=format&fit=crop"
-              alt="Luxury ribboned gift hamper box with fresh flowers and warm lights"
-              className="h-full w-full object-cover opacity-35"
+              src="https://images.unsplash.com/photo-1607344645866-009c320c5ab8?q=80&w=1600&auto=format&fit=crop"
+              alt="Luxury dark gift hamper box with gold ribbon and fresh flowers"
+              className="h-full w-full object-cover opacity-35 scale-105 animate-spin-slow"
+              style={{ animationDuration: '90s' }}
               loading="eager"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-brand-charcoal/40 via-brand-charcoal/85 to-brand-charcoal" />
+            <div className="absolute inset-0 bg-gradient-to-b from-brand-charcoal/50 via-brand-charcoal/90 to-brand-charcoal" />
           </div>
 
-          <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 text-center space-y-6 sm:space-y-8 py-12">
+          <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 text-center space-y-6 sm:space-y-8 py-16 animate-fade-in-up">
             <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-gold/10 border border-brand-gold/30 px-3.5 py-1 font-sans text-[9px] font-bold tracking-widest text-brand-gold uppercase">
               <Sparkles className="h-2.5 w-2.5 text-brand-rose" />
               <span>Premium Customized Gifting Studio</span>
             </span>
 
-            <h1 className="font-serif text-5xl sm:text-6xl lg:text-7xl font-light tracking-tight leading-tight">
+            <h1 className="font-serif text-5xl sm:text-6xl lg:text-8xl font-light tracking-tight leading-tight">
               Make every moment<br />
               <span className="italic font-normal text-gold-gradient font-serif">worth remembering.</span>
             </h1>
@@ -62,19 +133,19 @@ export default function HomePage() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-4">
               <Link
                 href="/gifts"
-                className="w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-white px-8 py-4 font-sans text-xs font-bold tracking-widest uppercase text-brand-charcoal hover:bg-brand-rose hover:text-white transition-all duration-300 shadow-sm"
+                className="w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-white px-8 py-4 font-sans text-xs font-bold tracking-widest uppercase text-brand-charcoal hover:bg-brand-rose hover:text-white transition-all duration-300 shadow-sm hover:scale-[1.02] transform"
               >
                 Explore Gifts
               </Link>
               <Link
                 href="/customize"
-                className="w-full sm:w-auto inline-flex items-center justify-center rounded-full border border-brand-gold/45 bg-transparent px-8 py-4 font-sans text-xs font-bold tracking-widest uppercase text-brand-ivory hover:border-brand-rose hover:bg-brand-rose/5 transition-all duration-300"
+                className="w-full sm:w-auto inline-flex items-center justify-center rounded-full border border-brand-gold/45 bg-transparent px-8 py-4 font-sans text-xs font-bold tracking-widest uppercase text-brand-ivory hover:border-brand-rose hover:bg-brand-rose/5 transition-all duration-300 hover:scale-[1.02] transform"
               >
                 Create Custom Gift
               </Link>
             </div>
 
-            <div className="pt-6 flex items-center justify-center gap-x-6 gap-y-2 flex-wrap font-sans text-[10px] font-bold tracking-widest text-brand-gold/80 uppercase">
+            <div className="pt-8 flex items-center justify-center gap-x-6 gap-y-2 flex-wrap font-sans text-[10px] font-bold tracking-widest text-brand-gold/80 uppercase">
               <span>Bespoke Gifting</span>
               <span className="h-1 w-1 bg-brand-rose rounded-full" />
               <span>Personalised Details</span>
@@ -91,24 +162,28 @@ export default function HomePage() {
         </section>
 
         {/* 2. Emotional Intro Section */}
-        <section className="bg-brand-ivory py-16 sm:py-24 border-b border-brand-gold/10">
-          <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center space-y-4">
+        <section className="bg-brand-ivory py-20 border-b border-brand-gold/10 scroll-reveal">
+          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center space-y-6">
             <span className="font-sans text-[10px] font-bold tracking-widest text-brand-gold uppercase">
               More than a gift
             </span>
-            <h2 className="font-serif text-3xl sm:text-4xl font-medium tracking-tight text-brand-charcoal">
-              It&apos;s the feeling behind it.
-            </h2>
+            <blockquote className="font-serif text-2xl sm:text-3xl lg:text-4xl font-light italic leading-relaxed text-brand-charcoal text-balance max-w-3xl mx-auto">
+              &ldquo;{BUSINESS_INFO.emotionalTagline}&rdquo;
+            </blockquote>
+            <div className="h-[1px] w-20 bg-brand-gold/30 mx-auto" />
             <p className="font-sans text-xs sm:text-sm text-brand-charcoal/65 leading-relaxed max-w-xl mx-auto">
-              At Rhythm, we believe a customized gift is an expression of appreciation, an preservation of a memory, and a bridge to the people who matter. We arrange every details—from personalized wax seals and photo mugs to doorstep acoustics—around your unique emotion.
+              At Rhythm, we believe a customized gift is an expression of appreciation, the preservation of a memory, and a bridge to the people who matter. We arrange every details—from personalized wax seals and photo mugs to doorstep acoustics—around your unique emotion.
             </p>
           </div>
         </section>
 
-        {/* NEW: Why Rhythm — Gifting Standards Section */}
+        {/* Gold Separator Line */}
+        <div className="h-[1px] w-28 bg-gradient-to-r from-transparent via-brand-gold/30 to-transparent mx-auto" />
+
+        {/* 3. Why Rhythm — Gifting Standards Section */}
         <section className="bg-white py-16 sm:py-24 border-b border-brand-gold/10">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-16">
-            <div className="text-center max-w-2xl mx-auto space-y-2">
+            <div className="text-center max-w-2xl mx-auto space-y-2 scroll-reveal">
               <span className="font-sans text-[10px] font-bold tracking-widest text-brand-gold uppercase">
                 Gifting Standards
               </span>
@@ -122,7 +197,7 @@ export default function HomePage() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
               {/* Pillar 1 */}
-              <div className="space-y-4 text-center sm:text-left bg-brand-ivory/30 p-6 rounded border border-brand-gold/5">
+              <div className="space-y-4 text-center sm:text-left bg-brand-ivory/20 p-6 rounded border border-brand-gold/5 scroll-reveal delay-75 card-hover-effect">
                 <div className="mx-auto sm:mx-0 flex h-12 w-12 items-center justify-center rounded-full bg-brand-rose/5 border border-brand-rose/25 text-brand-rose">
                   <Award className="h-5 w-5" />
                 </div>
@@ -135,7 +210,7 @@ export default function HomePage() {
               </div>
 
               {/* Pillar 2 */}
-              <div className="space-y-4 text-center sm:text-left bg-brand-ivory/30 p-6 rounded border border-brand-gold/5">
+              <div className="space-y-4 text-center sm:text-left bg-brand-ivory/20 p-6 rounded border border-brand-gold/5 scroll-reveal delay-150 card-hover-effect">
                 <div className="mx-auto sm:mx-0 flex h-12 w-12 items-center justify-center rounded-full bg-brand-gold/5 border border-brand-gold/25 text-brand-gold">
                   <Leaf className="h-5 w-5" />
                 </div>
@@ -148,7 +223,7 @@ export default function HomePage() {
               </div>
 
               {/* Pillar 3 */}
-              <div className="space-y-4 text-center sm:text-left bg-brand-ivory/30 p-6 rounded border border-brand-gold/5">
+              <div className="space-y-4 text-center sm:text-left bg-brand-ivory/20 p-6 rounded border border-brand-gold/5 scroll-reveal delay-200 card-hover-effect">
                 <div className="mx-auto sm:mx-0 flex h-12 w-12 items-center justify-center rounded-full bg-brand-rose/5 border border-brand-rose/25 text-brand-rose">
                   <Music className="h-5 w-5" />
                 </div>
@@ -161,7 +236,7 @@ export default function HomePage() {
               </div>
 
               {/* Pillar 4 */}
-              <div className="space-y-4 text-center sm:text-left bg-brand-ivory/30 p-6 rounded border border-brand-gold/5">
+              <div className="space-y-4 text-center sm:text-left bg-brand-ivory/20 p-6 rounded border border-brand-gold/5 scroll-reveal delay-300 card-hover-effect">
                 <div className="mx-auto sm:mx-0 flex h-12 w-12 items-center justify-center rounded-full bg-brand-gold/5 border border-brand-gold/25 text-brand-gold">
                   <ShieldCheck className="h-5 w-5" />
                 </div>
@@ -176,10 +251,13 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* 3. Shop by Occasion Section */}
+        {/* Gold Separator Line */}
+        <div className="h-[1px] w-28 bg-gradient-to-r from-transparent via-brand-gold/30 to-transparent mx-auto" />
+
+        {/* 4. Shop by Occasion Section */}
         <section className="bg-white py-16 sm:py-24 border-b border-brand-gold/10">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-12">
-            <div className="text-center max-w-2xl mx-auto space-y-2">
+            <div className="text-center max-w-2xl mx-auto space-y-2 scroll-reveal">
               <span className="font-sans text-[10px] font-bold tracking-widest text-brand-gold uppercase">
                 Browse Occasions
               </span>
@@ -187,16 +265,16 @@ export default function HomePage() {
                 Shop by Moment
               </h2>
               <p className="font-sans text-xs text-brand-charcoal/50">
-                Pick a card below to discover gift ideas built around these unique celebrations.
+                Pick a card below to discover gift ideas built around these celebrations.
               </p>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {OCCASIONS.map((occ) => (
+              {OCCASIONS.map((occ, idx) => (
                 <Link
                   key={occ.slug}
                   href={`/occasions#${occ.slug}`}
-                  className="group relative flex flex-col justify-end aspect-[4/3] rounded-lg overflow-hidden border border-brand-gold/15 bg-brand-charcoal card-hover-effect"
+                  className={`group relative flex flex-col justify-end aspect-[4/3] rounded-lg overflow-hidden border border-brand-gold/15 bg-brand-charcoal card-hover-effect scroll-reveal delay-${idx * 100}`}
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
@@ -204,7 +282,7 @@ export default function HomePage() {
                     alt={occ.name}
                     className="absolute inset-0 h-full w-full object-cover opacity-60 image-zoom-effect"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-brand-charcoal via-brand-charcoal/40 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-brand-charcoal via-brand-charcoal/50 to-transparent" />
                   
                   <div className="relative z-10 p-6 space-y-1 text-brand-ivory">
                     <h3 className="font-serif text-xl font-medium">{occ.name}</h3>
@@ -216,7 +294,7 @@ export default function HomePage() {
               ))}
             </div>
 
-            <div className="text-center pt-2">
+            <div className="text-center pt-2 scroll-reveal">
               <Link
                 href="/occasions"
                 className="inline-flex items-center gap-1 font-sans text-xs font-bold tracking-widest uppercase text-brand-charcoal hover:text-brand-rose transition-colors"
@@ -228,10 +306,13 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* 4. Featured Gifts Grid */}
+        {/* Gold Separator Line */}
+        <div className="h-[1px] w-28 bg-gradient-to-r from-transparent via-brand-gold/30 to-transparent mx-auto" />
+
+        {/* 5. Featured Gifts Grid */}
         <section className="bg-brand-ivory py-16 sm:py-24 border-b border-brand-gold/10">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-12">
-            <div className="text-center max-w-2xl mx-auto space-y-2">
+            <div className="text-center max-w-2xl mx-auto space-y-2 scroll-reveal">
               <span className="font-sans text-[10px] font-bold tracking-widest text-brand-gold uppercase">
                 Featured Arrangements
               </span>
@@ -240,16 +321,16 @@ export default function HomePage() {
               </h2>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 scroll-reveal delay-100">
               {featuredProducts.map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}
             </div>
 
-            <div className="text-center pt-4">
+            <div className="text-center pt-4 scroll-reveal">
               <Link
                 href="/gifts"
-                className="inline-flex items-center gap-1.5 rounded-full bg-brand-charcoal px-6 py-3 font-sans text-xs font-bold tracking-widest uppercase text-white hover:bg-brand-rose transition-all duration-300"
+                className="inline-flex items-center gap-1.5 rounded-full bg-brand-charcoal px-6 py-3 font-sans text-xs font-bold tracking-widest uppercase text-white hover:bg-brand-rose transition-all duration-300 shadow-sm"
               >
                 <span>Explore Full Catalogue</span>
               </Link>
@@ -257,10 +338,13 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* 5. Customization Core Promo */}
+        {/* Gold Separator Line */}
+        <div className="h-[1px] w-28 bg-gradient-to-r from-transparent via-brand-gold/30 to-transparent mx-auto" />
+
+        {/* 6. Customization Core Promo */}
         <section className="bg-white py-16 sm:py-24 border-b border-brand-gold/10">
           <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-            <div className="space-y-6">
+            <div className="space-y-6 scroll-reveal">
               <span className="font-sans text-[10px] font-bold tracking-widest text-brand-gold uppercase">
                 The Custom Philosophy
               </span>
@@ -281,7 +365,7 @@ export default function HomePage() {
                 </Link>
               </div>
             </div>
-            <div className="relative aspect-[4/3] rounded-lg overflow-hidden border border-brand-gold/15 bg-brand-charcoal shadow-sm card-hover-effect">
+            <div className="relative aspect-[4/3] rounded-lg overflow-hidden border border-brand-gold/15 bg-brand-charcoal shadow-sm card-hover-effect scroll-reveal delay-150">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?q=80&w=800&auto=format&fit=crop"
@@ -292,9 +376,12 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* 6. Interactive Gift Finder Teaser */}
+        {/* Gold Separator Line */}
+        <div className="h-[1px] w-28 bg-gradient-to-r from-transparent via-brand-gold/30 to-transparent mx-auto" />
+
+        {/* 7. Interactive Gift Finder Teaser */}
         <section className="bg-brand-ivory py-16 sm:py-24 border-b border-brand-gold/10">
-          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 space-y-8">
+          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 space-y-8 scroll-reveal">
             <div className="text-center max-w-xl mx-auto space-y-2">
               <span className="font-sans text-[10px] font-bold tracking-widest text-brand-gold uppercase">
                 Gifting Assistant
@@ -308,10 +395,13 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* 7. Surprise Delivery Section */}
+        {/* Gold Separator Line */}
+        <div className="h-[1px] w-28 bg-gradient-to-r from-transparent via-brand-gold/30 to-transparent mx-auto" />
+
+        {/* 8. Surprise Delivery Section */}
         <section className="bg-white py-16 sm:py-24 border-b border-brand-gold/10">
           <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-            <div className="md:col-span-5 relative aspect-[4/5] rounded-lg overflow-hidden border border-brand-gold/15 bg-brand-charcoal shadow-sm order-last md:order-first card-hover-effect">
+            <div className="md:col-span-5 relative aspect-[4/5] rounded-lg overflow-hidden border border-brand-gold/15 bg-brand-charcoal shadow-sm order-last md:order-first card-hover-effect scroll-reveal">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?q=80&w=800&auto=format&fit=crop"
@@ -319,7 +409,7 @@ export default function HomePage() {
                 className="h-full w-full object-cover image-zoom-effect"
               />
             </div>
-            <div className="md:col-span-7 space-y-6 md:pl-6">
+            <div className="md:col-span-7 space-y-6 md:pl-6 scroll-reveal delay-100">
               <span className="font-sans text-[10px] font-bold tracking-widest text-brand-gold uppercase">
                 Bespoke Doorstep Surprise
               </span>
@@ -342,10 +432,13 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* 8. Luxury Hampers / Collections Teaser */}
+        {/* Gold Separator Line */}
+        <div className="h-[1px] w-28 bg-gradient-to-r from-transparent via-brand-gold/30 to-transparent mx-auto" />
+
+        {/* 9. Luxury Hampers / Collections Teaser */}
         <section className="bg-brand-ivory py-16 sm:py-24 border-b border-brand-gold/10">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-12">
-            <div className="text-center max-w-2xl mx-auto space-y-2">
+            <div className="text-center max-w-2xl mx-auto space-y-2 scroll-reveal">
               <span className="font-sans text-[10px] font-bold tracking-widest text-brand-gold uppercase">
                 Studio Catalogues
               </span>
@@ -355,11 +448,11 @@ export default function HomePage() {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {COLLECTIONS.map((c) => (
+              {COLLECTIONS.map((c, idx) => (
                 <Link
                   key={c.slug}
                   href={`/collections/${c.slug}`}
-                  className="group relative flex flex-col justify-end aspect-[3/4] rounded-lg overflow-hidden border border-brand-gold/15 bg-brand-charcoal card-hover-effect"
+                  className={`group relative flex flex-col justify-end aspect-[3/4] rounded-lg overflow-hidden border border-brand-gold/15 bg-brand-charcoal card-hover-effect scroll-reveal delay-${idx * 75}`}
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
@@ -382,10 +475,13 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* 9. Instagram Moments (Social Proof) */}
+        {/* Gold Separator Line */}
+        <div className="h-[1px] w-28 bg-gradient-to-r from-transparent via-brand-gold/30 to-transparent mx-auto" />
+
+        {/* 10. Instagram Moments (Social Proof) */}
         <section className="bg-white py-16 sm:py-24 border-b border-brand-gold/10">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-12">
-            <div className="text-center max-w-2xl mx-auto space-y-2">
+            <div className="text-center max-w-2xl mx-auto space-y-2 scroll-reveal">
               <span className="font-sans text-[10px] font-bold tracking-widest text-brand-gold uppercase">
                 Social Showcase
               </span>
@@ -398,7 +494,7 @@ export default function HomePage() {
             </div>
 
             {/* Grid of editorial social style assets with zoom scale-ups */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 scroll-reveal delay-100">
               <div className="aspect-square relative overflow-hidden rounded border border-brand-gold/10 bg-brand-charcoal group">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
@@ -433,7 +529,7 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="text-center pt-2">
+            <div className="text-center pt-2 scroll-reveal">
               <a
                 href={BUSINESS_INFO.instagramUrl}
                 target="_blank"
@@ -446,12 +542,12 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* 10. Final Emotional CTA Section */}
+        {/* 11. Final Emotional CTA Section */}
         <section className="bg-brand-charcoal text-brand-ivory py-20 text-center relative overflow-hidden">
           {/* Overlay background for luxury feel */}
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-brand-charcoal/90 via-brand-charcoal to-brand-charcoal" />
           
-          <div className="relative z-10 mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 space-y-6 sm:space-y-8">
+          <div className="relative z-10 mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 space-y-6 sm:space-y-8 scroll-reveal">
             <span className="font-sans text-[10px] font-bold tracking-widest text-brand-gold uppercase block">
               Start Planning
             </span>
